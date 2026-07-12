@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">AppliMon10</string>
+    <string name="help_title">アプリの使用方法</string>
+    <string name="help_step1_title">1. SwitchBot連携の準備</string>
+    <string name="help_step1_desc">SwitchBotアプリの「プロフィール」→「設定」→「開発者向けオプション」からトークンとシークレットを取得してください。詳しくはこちら</string>
+    <string name="help_step2_title">2. デバイスIDの確認</string>
+    <string name="help_step2_desc">連携したいプラグ等の「設定」→「デバイス情報」から、BLE MACアドレス（デバイスID）を確認してください。6組の16進数の:を取って繋げたのがIDです</string>
+    <string name="help_step3_title">3. 設定の入力</string>
+    <string name="help_step3_desc">右上のメニューから「外部連携設定」を開き、取得した情報を入力して保存してください。</string>
+    <string name="help_step4_title">4. 動作開始</string>
+    <string name="help_step4_desc">メイン画面で測定間隔などを調整し、「アプリ設定を更新する」を押すと監視が始まります。</string>
+    <string name="help_step5_title">5. ボリューム設定</string>
+    <string name="help_step5_desc">ボリュームは独立して設定しています。音量(%)で設定してください。設定後「アプリ設定を更新する」を押してください。</string>
+    <string name="back_button">戻る</string>
+    <string name="close_button">閉じる</string>
+
+    <string name="help_detail_title">設定の詳細手順</string>
+    <string name="help_detail_token_title">■ トークンとシークレットの探し方</string>
+    <string name="help_detail_token_content">
+1. SwitchBotアプリを開き、下部の「プロフィール」を開く\n
+2. 「設定」をひらく\n
+3. 「基本データ」を開く\n
+4. 「アプリバージョン」を15回以上トントンと連続でタップする\n
+5. バージョンの下に「開発者向けオプション」が表示されるのでタップして開く\n
+6. トークンとクライアントシークレットが表示されます。右側のコピーマークをタップしてコピーし、Keepメモ等に貼り付けておきましょう。
+    </string>
+    <string name="help_detail_device_title">■ デバイスIDの探し方</string>
+    <string name="help_detail_device_content">
+1. SwitchBotアプリの「ホーム」から、使用するプラグをタップして開く\n
+2. 右上の設定（歯車マーク）をタップする\n
+3. 一番下の「デバイス情報」をタップして開く\n
+4. 「BLE MAC」を確認します（例：60:55:F9:12:34:56）\n
+5. デバイスIDは、この6組の16進数の「：」を取って並べたものになります（例：6055F9123456）。これを紙に書くかメモしておきましょう。
+    </string>
+    <string name="help_detail_input_title">■ 入力のコツ</string>
+    <string name="help_detail_input_content">
+1. アプリのメイン画面右上の三点をタップし「外部連携設定」を開く\n
+2. Keepメモ等に保存したトークンをコピーし、アプリのトークン欄に貼り付ける\n
+3. シークレットも同様にコピー＆ペーストする\n
+4. メモしたデバイスIDを入力し「保存する」を押す
+    </string>
+</resources>
