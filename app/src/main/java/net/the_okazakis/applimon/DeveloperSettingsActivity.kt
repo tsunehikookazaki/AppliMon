@@ -1,11 +1,11 @@
 package net.the_okazakis.applimon
 
-import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.ComponentActivity
+import androidx.core.content.edit
 
 class DeveloperSettingsActivity : ComponentActivity() {
 
@@ -26,14 +26,14 @@ class DeveloperSettingsActivity : ComponentActivity() {
             val secret = secretInput.text.toString()
 
             if (token.isEmpty() || secret.isEmpty()) {
-                Toast.makeText(this, "すべての頁E��を�E力してください", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "すべての項目を入力してください", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            PreferenceUtils.getEncryptedPrefs(this).edit()
-                .putString("token", token)
-                .putString("secret", secret)
-                .apply()
+            PreferenceUtils.getEncryptedPrefs(this).edit {
+                putString("token", token)
+                putString("secret", secret)
+            }
 
             Toast.makeText(this, "保存しました", Toast.LENGTH_SHORT).show()
             finish()

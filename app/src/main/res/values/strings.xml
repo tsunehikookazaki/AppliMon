@@ -39,4 +39,5 @@
 3. シークレットも同様にコピー＆ペーストする\n
 4. メモしたデバイスIDを入力し「保存する」を押す
     </string>
+    <string name="current_monitoring_target">現在の監視対象: %1$s</string>
 </resources>

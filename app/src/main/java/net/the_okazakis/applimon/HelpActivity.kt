@@ -20,7 +20,7 @@ class HelpActivity : ComponentActivity() {
 
         val step1Desc = findViewById<TextView>(R.id.helpStep1Desc)
         val fullText = getString(R.string.help_step1_desc)
-        val linkText = "詳しくはこちめE
+        val linkText = "詳しくはこちら"
         
         val spannable = SpannableString(fullText)
         val startIndex = fullText.indexOf(linkText)
