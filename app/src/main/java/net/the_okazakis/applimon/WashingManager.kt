@@ -6,8 +6,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 object WashingManager {
     // 設定値
     var checkIntervalMs = 5000L
-    var cooldownDurationMs = 1800000L
-    var targetVolumePercent = 80
+    var cooldownDurationMs = 600000L
+    var targetVolumePercent = 40
 
     // 状態管理
     var isWashing = false

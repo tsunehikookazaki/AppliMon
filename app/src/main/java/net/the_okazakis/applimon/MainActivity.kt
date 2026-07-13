@@ -68,8 +68,8 @@ class MainActivity : ComponentActivity() {
 
         sharedPref = getSharedPreferences("WashNotifPrefs", MODE_PRIVATE)
         val savedSeconds = sharedPref.getLong("intervalSec", 5L)
-        val savedMinutes = sharedPref.getLong("cooldownMin", 30L)
-        val savedVolume = sharedPref.getInt("volumePercent", 80)
+        val savedMinutes = sharedPref.getLong("cooldownMin", 10L)
+        val savedVolume = sharedPref.getInt("volumePercent", 40)
 
         WashingManager.checkIntervalMs = savedSeconds * 1000L
         WashingManager.cooldownDurationMs = savedMinutes * 60L * 1000L

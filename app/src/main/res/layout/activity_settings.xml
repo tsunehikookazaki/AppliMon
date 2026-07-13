@@ -30,6 +30,7 @@
             android:layout_height="wrap_content"
             android:hint="例：洗濯機"
             android:inputType="text"
+            android:imeOptions="actionDone"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -43,6 +44,7 @@
             android:layout_height="wrap_content"
             android:hint="デバイスIDを入力"
             android:inputType="text"
+            android:imeOptions="actionDone"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:hint="例：動作を開始しました"
             android:inputType="text"
+            android:imeOptions="actionDone"
             android:layout_marginBottom="16dp" />
 
         <TextView
@@ -69,6 +72,7 @@
             android:layout_height="wrap_content"
             android:hint="例：洗濯が終わりました"
             android:inputType="text"
+            android:imeOptions="actionDone"
             android:layout_marginBottom="24dp" />
 
         <Button
