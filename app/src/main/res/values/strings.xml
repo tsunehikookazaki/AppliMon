@@ -40,4 +40,38 @@
 4. メモしたデバイスIDを入力し「保存する」を押す
     </string>
     <string name="current_monitoring_target">現在の監視対象: %1$s</string>
+
+    <!-- Developer Settings -->
+    <string name="developer_settings_title">API連携設定</string>
+    <string name="label_token">SwitchBot トークン</string>
+    <string name="hint_token">トークンを入力</string>
+    <string name="label_secret">SwitchBot シークレット</string>
+    <string name="hint_secret">シークレットを入力</string>
+    <string name="button_save">保存する</string>
+    <string name="note_how_to_get_keys">※トークンとシークレットはSwitchBotアプリのプロフィール設定から取得できます。</string>
+
+    <!-- Main Activity -->
+    <string name="device_name_default">機器名未設定</string>
+    <string name="status_communicating">SwitchBotと通信中&#8230;</string>
+    <string name="label_app_settings">【 アプリ設定 】</string>
+    <string name="label_interval">測定間隔(秒)</string>
+    <string name="label_cooldown">ロック(分)</string>
+    <string name="label_volume">音量(%)</string>
+    <string name="button_update_settings">アプリ設定を更新する</string>
+    <string name="button_force_unlock">ロックを強制解除（待機中へ戻す）</string>
+    <string name="button_exit_app">通知を終了してアプリを閉じる</string>
+    <string name="button_open_token_settings">トークン設定画面を開く</string>
+
+    <!-- Settings Activity -->
+    <string name="settings_title">通知設定</string>
+    <string name="label_device_display_name">機器名 (表示用)</string>
+    <string name="hint_device_display_name">例：洗濯機</string>
+    <string name="label_device_id">デバイスID</string>
+    <string name="hint_device_id">デバイスIDを入力</string>
+    <string name="label_start_phrase">開始時の発声内容</string>
+    <string name="hint_start_phrase">例：動作を開始しました</string>
+    <string name="label_end_phrase">終了時の発声内容</string>
+    <string name="hint_end_phrase">例：洗濯が終わりました</string>
+    <string name="button_save_settings">保存する</string>
+    <string name="button_api_settings">API連携設定 (トークン等)</string>
 </resources>

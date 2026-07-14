@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="24dp"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    tools:context=".MainActivity"
+    tools:targetApi="33"
+    tools:theme="@style/Theme.WashNotif">
 
     <TextView
         android:id="@+id/deviceNameTextView"
@@ -15,7 +19,7 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:layout_marginBottom="8dp"
-        android:text="機器名未設定" />
+        android:text="@string/device_name_default" />
 
     <TextView
         android:id="@+id/statusTextView"
@@ -26,7 +30,7 @@
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:text="SwitchBotと通信中..." />
+        android:text="@string/status_communicating" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -38,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="【 アプリ設定 】"
+            android:text="@string/label_app_settings"
             android:textStyle="bold"
             android:textColor="#333333"
             android:layout_marginBottom="12dp"/>
@@ -59,7 +63,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="測定間隔(秒)"
+                    android:text="@string/label_interval"
                     android:textColor="#555555"
                     android:textSize="14sp"
                     android:gravity="center"
@@ -80,7 +84,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="ロック(分)"
+                    android:text="@string/label_cooldown"
                     android:textColor="#555555"
                     android:textSize="14sp"
                     android:gravity="center"
@@ -101,7 +105,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="音量(%)"
+                    android:text="@string/label_volume"
                     android:textColor="#555555"
                     android:textSize="14sp"
                     android:gravity="center"
@@ -116,38 +120,50 @@
 
         <Button
             android:id="@+id/saveSettingsButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="アプリ設定を更新する"
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_update_settings"
             android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/unlockButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ロックを強制解除（待機中へ戻す）"
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_force_unlock"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#FF5252"
+            android:backgroundTint="#B71C1C"
             android:textSize="16sp"
             android:layout_marginBottom="12dp" />
 
         <Button
             android:id="@+id/exitButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="通知を終了してアプリを閉じる"
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_exit_app"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#607D8B"
+            android:backgroundTint="#455A64"
             android:textSize="16sp" />
 
         <!-- メニューから遷移できるため、このボタンは非表示にします -->
         <Button
             android:id="@+id/settingsButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            android:text="トークン設定画面を開く"
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_open_token_settings"
             android:textColor="#FFFFFF"
             android:backgroundTint="#FF9800"
             android:textSize="16sp"

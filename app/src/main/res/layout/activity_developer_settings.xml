@@ -1,19 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Changed targetApi to 35 to resolve layout fidelity warning in the editor -->
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".DeveloperSettingsActivity"
+    tools:targetApi="35"
+    tools:theme="@style/Theme.WashNotif">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:padding="24dp"
-        android:paddingBottom="100dp">
+        android:paddingHorizontal="40dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="100dp"
+        android:gravity="center_horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="API連携設定"
+            android:text="@string/developer_settings_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="60dp"
@@ -22,44 +29,62 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SwitchBot トークン"
+            android:text="@string/label_token"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/tokenInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="トークンを入力"
+            android:maxWidth="488dp"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_token"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="none"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="SwitchBot シークレット"
+            android:text="@string/label_secret"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/secretInput"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="シークレットを入力"
+            android:maxWidth="488dp"
+            android:minWidth="300dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_secret"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="none"
+            android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp" />
 
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存する" />
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:minHeight="48dp"
+            android:text="@string/button_save" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="※トークンとシークレットはSwitchBotアプリのプロフィール設定から取得できます。"
+            android:text="@string/note_how_to_get_keys"
             android:textSize="12sp"
-            android:textColor="#666666" />
+            android:textColor="?android:attr/textColorSecondary" />
 
     </LinearLayout>
 </ScrollView>

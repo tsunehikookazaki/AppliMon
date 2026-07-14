@@ -1,3 +1,5 @@
+@file:Suppress("DEPRECATION")
+
 package net.the_okazakis.applimon
 
 import android.content.Context
@@ -7,7 +9,7 @@ import androidx.security.crypto.MasterKey
 
 object PreferenceUtils {
     fun getEncryptedPrefs(context: Context): SharedPreferences {
-        val masterKey = MasterKey.Builder(context)
+        val masterKey = MasterKey.Builder(context, MasterKey.DEFAULT_MASTER_KEY_ALIAS)
             .setKeyScheme(MasterKey.KeyScheme.AES256_GCM)
             .build()
 

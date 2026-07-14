@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".SettingsActivity"
+    tools:targetApi="35"
+    tools:theme="@style/Theme.WashNotif">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +17,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="通知設定"
+            android:text="@string/settings_title"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginTop="60dp"
@@ -22,64 +26,87 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="機器名 (表示用)"
+            android:text="@string/label_device_display_name"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/deviceNameInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="例：洗濯機"
+            android:maxWidth="400dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_device_display_name"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="deviceName"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="デバイスID"
+            android:text="@string/label_device_id"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/deviceIdInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="デバイスIDを入力"
+            android:maxWidth="400dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_device_id"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="none"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="開始時の発声内容"
+            android:text="@string/label_start_phrase"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/startPhraseInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="例：動作を開始しました"
+            android:maxWidth="400dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_start_phrase"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="none"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:layout_marginBottom="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="終了時の発声内容"
+            android:text="@string/label_end_phrase"
             android:textStyle="bold" />
         <EditText
             android:id="@+id/phraseInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="例：洗濯が終わりました"
+            android:maxWidth="400dp"
+            android:minHeight="48dp"
+            android:hint="@string/hint_end_phrase"
             android:inputType="text"
             android:imeOptions="actionDone"
+            android:autofillHints="none"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textColorHint="?android:attr/textColorSecondary"
             android:layout_marginBottom="24dp" />
 
         <Button
             android:id="@+id/saveButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="保存する"
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_save_settings"
             android:layout_marginBottom="32dp" />
 
         <View
@@ -90,10 +117,13 @@
 
         <Button
             android:id="@+id/developerSettingsButton"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="API連携設定 (トークン等)"
-            android:backgroundTint="#888888" />
+            android:minWidth="200dp"
+            android:maxWidth="320dp"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/button_api_settings"
+            android:backgroundTint="#212121" />
 
     </LinearLayout>
 </ScrollView>
