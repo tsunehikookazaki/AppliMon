@@ -76,6 +76,8 @@
             android:maxWidth="320dp"
             android:layout_gravity="center_horizontal"
             android:minHeight="48dp"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF"
             android:text="@string/button_save" />
 
         <TextView

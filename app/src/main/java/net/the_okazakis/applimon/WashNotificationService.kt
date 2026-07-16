@@ -57,13 +57,27 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
                     val prefs = PreferenceUtils.getEncryptedPrefs(this@WashNotificationService)
                     val currentToken = prefs.getString("token", "") ?: ""
                     val currentSecret = prefs.getString("secret", "") ?: ""
-                    val currentDeviceId = prefs.getString("deviceId", "") ?: ""
-                    val currentDeviceName = prefs.getString("deviceName", "洗濯機") ?: "洗濯機"
-                    val startPhrase = prefs.getString("startSpokenPhrase", "動作を開始しました。") ?: "動作を開始しました。"
-                    val endPhrase = prefs.getString("spokenPhrase", "動作が終わりました。") ?: "動作が終わりました。"
-
+                    
                     if (currentToken.isNotEmpty() && currentSecret.isNotEmpty()) {
-                        fetchPowerStatus(currentToken, currentSecret, currentDeviceId, currentDeviceName, startPhrase, endPhrase)
+                        // 機器1の監視
+                        val id1 = prefs.getString("deviceId1", prefs.getString("deviceId", "")) ?: ""
+                        val name1 = prefs.getString("deviceName1", prefs.getString("deviceName", "洗濯機")) ?: "洗濯機"
+                        val start1 = prefs.getString("startSpokenPhrase1", prefs.getString("startSpokenPhrase", "動作を開始しました。")) ?: ""
+                        val end1 = prefs.getString("spokenPhrase1", prefs.getString("spokenPhrase", "動作が終わりました。")) ?: ""
+                        
+                        if (id1.isNotEmpty()) {
+                            fetchPowerStatus(currentToken, currentSecret, id1, name1, start1, end1, WashingManager.device1)
+                        }
+
+                        // 機器2の監視
+                        val id2 = prefs.getString("deviceId2", "") ?: ""
+                        val name2 = prefs.getString("deviceName2", "乾燥機") ?: "乾燥機"
+                        val start2 = prefs.getString("startSpokenPhrase2", "乾燥を開始しました。") ?: ""
+                        val end2 = prefs.getString("spokenPhrase2", "乾燥が終わりました。") ?: ""
+
+                        if (id2.isNotEmpty()) {
+                            fetchPowerStatus(currentToken, currentSecret, id2, name2, start2, end2, WashingManager.device2)
+                        }
                     } else {
                         Log.e("SwitchBotService", "トークンまたはシークレットが設定されていません")
                     }
@@ -90,7 +104,7 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
             .setContentText(contentText)
             .setSmallIcon(android.R.drawable.ic_menu_info_details)
             .setContentIntent(pendingIntent)
-            .setOnlyAlertOnce(true) // 更新時に何度も音を鳴らさない
+            .setOnlyAlertOnce(true)
             .build()
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
@@ -112,7 +126,7 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
         }
     }
 
-    private fun fetchPowerStatus(token: String, secret: String, deviceId: String, deviceName: String, startPhrase: String, endPhrase: String) {
+    private fun fetchPowerStatus(token: String, secret: String, deviceId: String, deviceName: String, startPhrase: String, endPhrase: String, state: DeviceState) {
         try {
             val t = System.currentTimeMillis().toString()
             val nonce = UUID.randomUUID().toString()
@@ -139,7 +153,6 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
                     val jsonObject = JSONObject(responseBody)
                     val body = jsonObject.getJSONObject("body")
                     
-                    // SwitchBot API v1.1では電力(W)が "watt" または "weight" というキーで返ってくる場合があるため両方チェック
                     val powerWatts = when {
                         body.has("watt") -> body.getDouble("watt")
                         body.has("weight") -> body.getDouble("weight")
@@ -152,49 +165,49 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
                     val currentTimeStr = SimpleDateFormat("HH時mm分", Locale.JAPAN).format(Date())
 
                     if (powerWatts > 5.0) {
-                        if (!WashingManager.isWashing) {
-                            if (currentTimeMillis - WashingManager.lastCompletionTime > WashingManager.cooldownDurationMs) {
-                                WashingManager.isWashing = true
-                                WashingManager.startTimeStr = currentTimeStr
-                                WashingManager.startTimeMillis = currentTimeMillis
+                        if (!state.isWashing) {
+                            if (currentTimeMillis - state.lastCompletionTime > WashingManager.cooldownDurationMs) {
+                                state.isWashing = true
+                                state.startTimeStr = currentTimeStr
+                                state.startTimeMillis = currentTimeMillis
 
                                 speak(startPhrase)
-                                WashingManager.statusText.value = "【 $deviceName: 動作中 】\n\n開始時刻: ${WashingManager.startTimeStr}\n経過時間: 0分0秒\n(現在: $powerWatts W)"
-                                WashingManager.statusColor.value = Color.BLACK
+                                state.statusText.value = "【 $deviceName: 動作中 】\n\n開始時刻: ${state.startTimeStr}\n経過時間: 0分0秒\n(現在: $powerWatts W)"
+                                state.statusColor.value = Color.BLACK
                                 updateNotification("$deviceName 動作開始 $currentTimeStr")
                             } else {
                                 Log.e("SwitchBotService", "パタパタ運転を検知。ガード期間のため無視します。")
                             }
                         } else {
-                            val elapsedMs = currentTimeMillis - WashingManager.startTimeMillis
+                            val elapsedMs = currentTimeMillis - state.startTimeMillis
                             val elapsedMinutes = elapsedMs / 60000
                             val elapsedSeconds = (elapsedMs % 60000) / 1000
                             
-                            WashingManager.statusText.value = "【 $deviceName: 動作中 】\n\n開始時刻: ${WashingManager.startTimeStr}\n経過時間: ${elapsedMinutes}分${elapsedSeconds}秒\n(現在: $powerWatts W)"
+                            state.statusText.value = "【 $deviceName: 動作中 】\n\n開始時刻: ${state.startTimeStr}\n経過時間: ${elapsedMinutes}分${elapsedSeconds}秒\n(現在: $powerWatts W)"
                             updateNotification("$deviceName 動作中: 約${elapsedMinutes}分経過 ($powerWatts W)")
                         }
-                    } else if (powerWatts < 1.0 && WashingManager.isWashing) {
-                        WashingManager.isWashing = false
-                        WashingManager.lastCompletionTime = currentTimeMillis
+                    } else if (powerWatts < 1.0 && state.isWashing) {
+                        state.isWashing = false
+                        state.lastCompletionTime = currentTimeMillis
                         speak(endPhrase)
 
-                        val totalElapsedMs = currentTimeMillis - WashingManager.startTimeMillis
+                        val totalElapsedMs = currentTimeMillis - state.startTimeMillis
                         val totalElapsedMinutes = totalElapsedMs / 60000
                         val totalElapsedSeconds = (totalElapsedMs % 60000) / 1000
 
-                        WashingManager.statusText.value = "【 $deviceName: 完了 】\n\n開始時刻: ${WashingManager.startTimeStr}\n終了時刻: $currentTimeStr\n(所要時間: ${totalElapsedMinutes}分${totalElapsedSeconds}秒)"
-                        WashingManager.statusColor.value = Color.BLUE
+                        state.statusText.value = "【 $deviceName: 完了 】\n\n開始時刻: ${state.startTimeStr}\n終了時刻: $currentTimeStr\n(所要時間: ${totalElapsedMinutes}分${totalElapsedSeconds}秒)"
+                        state.statusColor.value = Color.BLUE
                         updateNotification("$deviceName 完了しました ($currentTimeStr)")
 
-                    } else if (!WashingManager.isWashing) {
-                        val passedTime = currentTimeMillis - WashingManager.lastCompletionTime
+                    } else if (!state.isWashing) {
+                        val passedTime = currentTimeMillis - state.lastCompletionTime
                         if (passedTime < WashingManager.cooldownDurationMs) {
                             val remainingMin = ((WashingManager.cooldownDurationMs - passedTime) / 60000) + 1
-                            WashingManager.statusText.value = "【 $deviceName: 完了・ガード中 】\n\n誤検知防止ロック残り: 約$remainingMin 分\n(現在: $powerWatts W)"
+                            state.statusText.value = "【 $deviceName: 完了・ガード中 】\n\n誤検知防止ロック残り: 約$remainingMin 分\n(現在: $powerWatts W)"
                         } else {
-                            WashingManager.statusText.value = "【 $deviceName: 待機中 】\n\n(現在: $powerWatts W)"
-                            WashingManager.statusColor.value = Color.BLACK
-                            updateNotification("$deviceName 待機中...")
+                            state.statusText.value = "【 $deviceName: 待機中 】\n\n(現在: $powerWatts W)"
+                            state.statusColor.value = Color.BLACK
+                            // updateNotification("$deviceName 待機中...") // 2台あると通知が頻繁に書き換わるので待機中は抑制してもいいかも
                         }
                     }
                 } else {
@@ -207,6 +220,7 @@ class WashNotificationService : Service(), TextToSpeech.OnInitListener {
     }
 
     private fun speak(text: String) {
+        if (text.isEmpty()) return
         val audioManager = getSystemService(AUDIO_SERVICE) as AudioManager
         originalVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)
         val maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)

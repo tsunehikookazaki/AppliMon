@@ -68,6 +68,8 @@
             android:minWidth="200dp"
             android:maxWidth="320dp"
             android:layout_gravity="center_horizontal"
+            android:backgroundTint="#1976D2"
+            android:textColor="#FFFFFF"
             android:text="@string/close_button"
             android:layout_marginBottom="40dp" />
 

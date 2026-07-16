@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">AppliMon10</string>
+    <string name="app_name">AppliMon11</string>
     <string name="help_title">アプリの使用方法</string>
     <string name="help_step1_title">1. SwitchBot連携の準備</string>
     <string name="help_step1_desc">SwitchBotアプリの「プロフィール」→「設定」→「開発者向けオプション」からトークンとシークレットを取得してください。詳しくはこちら</string>
     <string name="help_step2_title">2. デバイスIDの確認</string>
-    <string name="help_step2_desc">連携したいプラグ等の「設定」→「デバイス情報」から、BLE MACアドレス（デバイスID）を確認してください。6組の16進数の:を取って繋げたのがIDです</string>
+    <string name="help_step2_desc">SwitchBotアプリの連携したいプラグをタップし右上の「設定　歯車」→「デバイス情報」から、BLE MACアドレス（デバイスID）を確認してください。6組の16進数の:を取って繋げたのがIDです</string>
     <string name="help_step3_title">3. 設定の入力</string>
-    <string name="help_step3_desc">右上のメニューから「外部連携設定」を開き、取得した情報を入力して保存してください。</string>
+    <string name="help_step3_desc">アプリのメイン画面の右上のメニューから「トークン等の入力」「プラグの入力」を開き、それぞれ取得した情報を入力して保存してください。</string>
     <string name="help_step4_title">4. 動作開始</string>
-    <string name="help_step4_desc">メイン画面で測定間隔などを調整し、「アプリ設定を更新する」を押すと監視が始まります。</string>
+    <string name="help_step4_desc">アプリのメイン画面で測定間隔などを調整し、「アプリ設定を更新する」を押すと監視が始まります。</string>
     <string name="help_step5_title">5. ボリューム設定</string>
-    <string name="help_step5_desc">ボリュームは独立して設定しています。音量(%)で設定してください。設定後「アプリ設定を更新する」を押してください。</string>
+    <string name="help_step5_desc">ボリュームは聞き逃さないように通常のスマフォのメディアの音量とは独立しています。サイレントモードでも鳴ります。音量(%)で設定してください（40％がおすすめ）。設定後「アプリ設定を更新する」を押してください。\n無音にするには0%にするか、「通知を終了してアプリを閉じる」ボタンを押し監視を中止してください。</string>
     <string name="back_button">戻る</string>
     <string name="close_button">閉じる</string>
 
@@ -40,6 +40,7 @@
 4. メモしたデバイスIDを入力し「保存する」を押す
     </string>
     <string name="current_monitoring_target">現在の監視対象: %1$s</string>
+    <string name="current_monitoring_target_two">現在の監視対象: %1$s / %2$s</string>
 
     <!-- Developer Settings -->
     <string name="developer_settings_title">API連携設定</string>
@@ -53,6 +54,8 @@
     <!-- Main Activity -->
     <string name="device_name_default">機器名未設定</string>
     <string name="status_communicating">SwitchBotと通信中&#8230;</string>
+    <string name="status_connecting_device1">機器1: 接続中&#8230;</string>
+    <string name="status_connecting_device2">機器2: 接続中&#8230;</string>
     <string name="label_app_settings">【 アプリ設定 】</string>
     <string name="label_interval">測定間隔(秒)</string>
     <string name="label_cooldown">ロック(分)</string>
@@ -63,7 +66,8 @@
     <string name="button_open_token_settings">トークン設定画面を開く</string>
 
     <!-- Settings Activity -->
-    <string name="settings_title">通知設定</string>
+    <string name="settings_device1_section">■ 機器1の設定</string>
+    <string name="settings_device2_section">■ 機器2の設定</string>
     <string name="label_device_display_name">機器名 (表示用)</string>
     <string name="hint_device_display_name">例：洗濯機</string>
     <string name="label_device_id">デバイスID</string>

@@ -22,5 +22,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AppliMon10"
+rootProject.name = "AppliMon11"
 include(":app")
