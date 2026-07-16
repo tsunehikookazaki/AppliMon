@@ -89,6 +89,19 @@
             android:text="@string/help_step5_desc"
             android:layout_marginBottom="32dp" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_step6_title"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginBottom="8dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/help_step6_desc"
+            android:layout_marginBottom="32dp" />
+
         <Button
             android:id="@+id/backButton"
             android:layout_width="wrap_content"

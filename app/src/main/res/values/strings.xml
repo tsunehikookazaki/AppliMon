@@ -11,6 +11,8 @@
     <string name="help_step4_desc">アプリのメイン画面で測定間隔などを調整し、「アプリ設定を更新する」を押すと監視が始まります。</string>
     <string name="help_step5_title">5. ボリューム設定</string>
     <string name="help_step5_desc">ボリュームは聞き逃さないように通常のスマフォのメディアの音量とは独立しています。サイレントモードでも鳴ります。音量(%)で設定してください（40％がおすすめ）。設定後「アプリ設定を更新する」を押してください。\n無音にするには0%にするか、「通知を終了してアプリを閉じる」ボタンを押し監視を中止してください。</string>
+    <string name="help_step6_title">6. アプリのバージョンアップ</string>
+    <string name="help_step6_desc">アプリをバージョンアップしても、トークン、シークレット、デバイスID、デバイス名、設定値等は引き継がれます。アンインストールすると、新たにインストールしてもこれらは引き継がれません。</string>
     <string name="back_button">戻る</string>
     <string name="close_button">閉じる</string>
 
